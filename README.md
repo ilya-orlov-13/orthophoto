@@ -174,11 +174,10 @@
 
 ## Структура Проекта
 
-```
-./
-├── images/                                      # <-- Входные снимки
+```                             
 ├── data/
-│   ├── output/odm_processing/images             # <-- Входные снимки
+|   ├── input_images/                            # Входные снимки
+│   ├── output/odm_processing/images             # Входные снимки
 │   └── parking_layout/                          
 ├── models/                                      
 ├── core/                                        # Модули ядра (ODM runner, анализ, IO)
