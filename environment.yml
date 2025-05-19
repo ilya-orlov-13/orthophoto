@@ -1,0 +1,19 @@
+name: ortho_env 
+
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - python=3.9
+  - pip
+  - numpy
+  - opencv
+  - pillow
+  - rasterio
+  - matplotlib
+  - scipy
+  - shapely
+  
+  - pip:
+    - Pillow
