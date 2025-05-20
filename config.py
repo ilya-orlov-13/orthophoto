@@ -31,13 +31,13 @@ ODM_OPTIONS = {
     "use-exif": True,                 # Использовать GPS-данные из EXIF изображений
 
     # --- Этап извлечения признаков (Feature Extraction) и сопоставления (Matching) ---
-    "feature-quality": "ultra",       # Качество извлечения признаков (ultra|high|medium|low|lowest)
+    "feature-quality": "lowest",       # Качество извлечения признаков (ultra|high|medium|low|lowest)
     "matcher-type": "flann",          # Тип алгоритма сопоставления признаков (flann|bow|sequential|bruteforce|spatial)
     # "flann-neighbors": <int>
     # "bow-num-words": <int> (если "matcher-type": "bow") количество слов в словаре
 
     # --- Этап плотного восстановления (MVS) ---    
-    "pc-quality": "ulra",            # Качество плотного облака точек
+    "pc-quality": "lowest",            # Качество плотного облака точек
 
     # --- Этап создания цифровых моделей (DEM, DSM, DTM) ---
     "dsm": True,                     # Генерировать цифровую модель поверхности
