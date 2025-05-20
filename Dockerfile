@@ -33,13 +33,5 @@ RUN conda env create -f environment.yml && \
 ENV CONDA_ENV_NAME ortho_env
 SHELL ["conda", "run", "-n", "${CONDA_ENV_NAME}", "/bin/bash", "-c"]
 
-RUN echo "Conda environment $CONDA_ENV_NAME is active." && \
-    echo "Python version:" && \
-    python --version && \
-    echo "Pip version:" && \
-    pip --version && \
-    echo "Conda packages:" && \
-    conda list
-
 # 9. Указание команды, которая будет выполняться при запуске контейнера
 CMD ["python", "main.py"]
