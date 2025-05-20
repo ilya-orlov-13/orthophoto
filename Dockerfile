@@ -34,11 +34,4 @@ RUN conda env update --name base --file environment.yml && \
 
 RUN echo "Список установленных пакетов (частично):" conda list numpy opencv pillow rasterio matplotlib scipy shapely requests
 
-SHELL ["/opt/conda/bin/bash", "-c"]
-
-RUN echo "Проверка базового окружения:" && \
-    python --version && \
-    pip --version && \
-    conda list
-
 CMD ["python", "main.py"]
