@@ -42,10 +42,8 @@ ODM_OPTIONS = {
     "pc-quality": "lowest",           # Качество плотного облака точек
     
     # --- Этап Создания 3D Меша (Meshing) ---
-    "skip-3dmesh": True,
 
     # --- Этап Текстурирования Меша (Texturing) ---
-    "skip-texturing": True,
 
     # --- Этап создания цифровых моделей (DEM, DSM, DTM) ---
     "dsm": True,                      # Генерировать цифровую модель поверхности
