@@ -1,3 +1,5 @@
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
+
 # Выбор базового образа Miniconda3
 FROM continuumio/miniconda3:latest
 
