@@ -10,6 +10,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     git \
     curl \
+    docker.io \
     libgl1-mesa-glx
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
