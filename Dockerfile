@@ -11,8 +11,8 @@ RUN apt-get update && \
     git \
     curl \
     libgl1-mesa-glx
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get clean \
+    rm -rf /var/lib/apt/lists/*
 
 # Установка рабочей директории
 WORKDIR /app
