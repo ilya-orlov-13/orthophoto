@@ -32,15 +32,7 @@ RUN if [ ! -f environment.yml ]; then \
 RUN conda env update --name base --file environment.yml && \
     conda clean --all -f -y
 
-RUN echo "--- Проверка окружения после установки ---" && \
-    echo "Активное окружение (должно быть base или /opt/conda):" && \
-    conda info --envs && \
-    echo "Версия Python:" && \
-    python --version && \
-    echo "Версия Pip:" && \
-    pip --version && \
-    echo "Список установленных пакетов (частично):" && \
-    conda list numpy opencv pillow rasterio matplotlib scipy shapely requests
+RUN echo "Список установленных пакетов (частично):" conda list numpy opencv pillow rasterio matplotlib scipy shapely requests
 
 SHELL ["/opt/conda/bin/bash", "-c"]
 
