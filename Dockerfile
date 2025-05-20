@@ -1,5 +1,5 @@
 # 1. Выбор базового образа Miniconda3
-FROM continuumio/miniconda3:py39_4.12.0 #версия Python, указанная в environment.yml
+FROM continuumio/miniconda3:latest #версия Python, указанная в environment.yml
 
 # 2. Установка переменных окружения
 ENV PYTHONDONTWRITEBYTECODE 1
