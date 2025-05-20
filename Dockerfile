@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     git \
     curl \
-    # libgl1-mesa-glx # Для OpenCV headless, если используется
+    libgl1-mesa-glx
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -20,20 +20,33 @@ WORKDIR /app
 # Клонирование репозитория
 ARG GIT_REPO_URL="https://github.com/ilya-orlov-13/orthophoto.git"
 ARG GIT_BRANCH="main"
-# Клонируем с --depth 1 для экономии (только последний коммит)
-# Точка в конце означает клонировать в текущую WORKDIR (/app)
 RUN git clone --branch ${GIT_BRANCH} --depth 1 ${GIT_REPO_URL} .
 
-RUN conda install --yes --file <(grep -E -v '^name:|^prefix:|^channels:|^pip:' environment.yml | sed -e '/^dependencies:/d' -e 's/- //g') && \
-    conda run pip install -r <(grep -A 1000 -e "^  pip:" environment.yml | grep -e "^  - " | sed -e 's/^  - //') && \
+# Убедимся, что environment.yml существует после клонирования
+RUN if [ ! -f environment.yml ]; then \
+        echo "ОШИБКА: Файл environment.yml не найден после клонирования репозитория!" >&2; \
+        exit 1; \
+    fi
+
+# Устанавливаем/обновляем пакеты в базовом окружении из environment.yml
+RUN conda env update --name base --file environment.yml && \
     conda clean --all -f -y
+
+RUN echo "--- Проверка окружения после установки ---" && \
+    echo "Активное окружение (должно быть base или /opt/conda):" && \
+    conda info --envs && \
+    echo "Версия Python:" && \
+    python --version && \
+    echo "Версия Pip:" && \
+    pip --version && \
+    echo "Список установленных пакетов (частично):" && \
+    conda list numpy opencv pillow rasterio matplotlib scipy shapely requests
+
+SHELL ["/opt/conda/bin/bash", "-c"]
 
 RUN echo "Проверка базового окружения:" && \
     python --version && \
     pip --version && \
-    conda list\
-    
-COPY . .
+    conda list
 
-# Указание команды, которая будет выполняться при запуске контейнера
 CMD ["python", "main.py"]
