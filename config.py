@@ -22,29 +22,19 @@ ODM_RUN_METHOD = 'docker'                 # Метод запуска: 'docker' 
 ODM_DOCKER_IMAGE = 'opendronemap/odm:latest' # Docker образ ODM (можно 'opendronemap/odm:3.1.1' и т.д.)
 ODM_PROJECT_NAME = "odm_processing"
 
-ODM_OPTIONS = {  
-    
+ODM_OPTIONS = {
+    "dsm": True,                      # Генерировать DSM?
+    "orthophoto-resolution": 5.0,     # Разрешение ортофото в СМ/пиксель
+    # "orthophoto-tif": True,        
+
+    # --- Качество/Скорость ---
+    "feature-quality": "medium",
+    "pc-quality": "medium",
     "use-gpu": True,                  # Пытаться использовать GPU?
     "max-concurrency": max(1, multiprocessing.cpu_count() // 2),
-    # --- Входные данные ---
-    # "resize-to": 2400,              # Уменьшить изображение до 2400 px по большей стороне перед обработкой
-    "use-exif": True,                 # Использовать GPS-данные из EXIF изображений
-
-    # --- Этап извлечения признаков (Feature Extraction) и сопоставления (Matching) ---
-    "feature-quality": "ultra",       # Качество извлечения признаков (ultra|high|medium|low|lowest)
-    "matcher-type": "flann",          # Тип алгоритма сопоставления признаков (flann|bow|sequential|bruteforce|spatial)
-    # "flann-neighbors": <int>
-    # "bow-num-words": <int> (если "matcher-type": "bow") количество слов в словаре
-
-    # --- Этап плотного восстановления (MVS) ---    
-    "pc-quality": "ultra",            # Качество плотного облака точек
-
-    # --- Этап создания цифровых моделей (DEM, DSM, DTM) ---
-    "dsm": True,                      # Генерировать цифровую модель поверхности
-
-    # --- Этап создания ортофотоплана ---
-    "orthophoto-resolution": 2.0,     # Разрешение ортофото в СМ/пиксель (каждый пиксель на ортофотоплане будет представлять квадрат со стороной 2 см на реальной местности)
-    "fast-orthophoto": False,         # Использовать быстрый метод генерации
+    # "resize-to": 2400,
+    "fast-orthophoto": False,
+    "matcher-type": "flann",
 }
 
 # --- Параметры анализа парковок (для analysis.py) ---
